@@ -39,7 +39,7 @@ def show_main_window(username):
         if charset == 0: return 0
         return round(len(password) * math.log2(charset), 2)
 
-    def update_strength_bar():
+    def update_strength_bar(*_):
         pswd = password_input.get()
         entropy = estimate_entropy(pswd)
         entropy_bar['value'] = min(entropy, 100)
