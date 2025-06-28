@@ -11,8 +11,6 @@ def show_main_window(username):
     window.title(f"Vault - {username}")
     window.config(padx=40, pady=40)
 
-
-    # done
     def generate_password():
         letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         digits = "0123456789"
@@ -32,7 +30,6 @@ def show_main_window(username):
         window.clipboard_append(pswd)
         update_strength_bar()
 
-    # done
     def estimate_entropy(password):
         charset = 0
         if re.search(r"[a-z]", password): charset += 26
@@ -42,17 +39,16 @@ def show_main_window(username):
         if charset == 0: return 0
         return round(len(password) * math.log2(charset), 2)
 
-    # done
     def update_strength_bar():
         pswd = password_input.get()
         entropy = estimate_entropy(pswd)
         entropy_bar['value'] = min(entropy, 100)
         if entropy < 40:
-            entropy_label_var.set("🔴 Weak")
+            entropy_label_var.set("Weak")
         elif entropy < 70:
-            entropy_label_var.set("🟠 Medium")
+            entropy_label_var.set("Medium")
         else:
-            entropy_label_var.set("🟢 Strong")
+            entropy_label_var.set("Strong")
         entropy_value_var.set(f"{entropy} bits")
 
     
@@ -117,7 +113,6 @@ def show_main_window(username):
 
     email_label = ttk.Label(text="Email:")
     email_input = ttk.Entry(width=35)
-    email_input.insert(0, username)
 
     password_label = ttk.Label(text="Password:")
     password_input = ttk.Entry(width=22, show="*")
